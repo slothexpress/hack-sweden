@@ -2,6 +2,7 @@ import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers.users import router as users_router
+#from database import connect_to_db
 
 # Create an instance of the FastAPI class
 app = FastAPI()
@@ -24,7 +25,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-test = {"id": "1234", "name": "bagarsmurfen"}
+test = {"id": "12", "name": "bagarsmurfen"}
 
 # Root endpoint
 @app.get("/")
