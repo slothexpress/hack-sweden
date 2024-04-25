@@ -1,7 +1,12 @@
+import sys
 from fastapi import FastAPI
+from users import router as users_router
 
 # Create an instance of the FastAPI class
 app = FastAPI()
+
+# Include routers
+app.include_router(users_router)
 
 test = {"id": "1234", "name": "bagarsmurfen"}
 
