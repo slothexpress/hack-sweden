@@ -1,6 +1,6 @@
 import sys
 from fastapi import FastAPI
-from users import router as users_router
+from routers.users import router as users_router
 
 # Create an instance of the FastAPI class
 app = FastAPI()
