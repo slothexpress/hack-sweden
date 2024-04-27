@@ -39,7 +39,7 @@ To start the backend project, run:
 
 Uvicorn allows FASTapi apps to update live by reloading code changes as files are saved.
 
-### Frontend
+### Frontend: React.js
 Navigate to the frontend folder, where the `package.json` file is located and install all dependencies with command:
 
 `npm install`
