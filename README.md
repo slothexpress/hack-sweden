@@ -1,4 +1,4 @@
-# Hack Sweden
+# Hack Sweden - Team Beachfaces
 WIP: About the app or purpose etc
 
 
