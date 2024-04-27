@@ -4,8 +4,11 @@ import {
   TileLayer,
   LayerGroup,
   CircleMarker,
+  Polyline,
+  Popup,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { trails } from "./exampleData";
 
 const Map = () => {
   const mapRef = useRef(null);
@@ -33,6 +36,13 @@ const Map = () => {
             radius={5}
             pathOptions={{ color: "red" }}
           ></CircleMarker>
+        ))}
+      </LayerGroup>
+      <LayerGroup>
+        {trails.map((trail) => (
+          <Polyline positions={trail?.coordinates}>
+            <Popup>{trail?.name}</Popup>
+          </Polyline>
         ))}
       </LayerGroup>
       <TileLayer
