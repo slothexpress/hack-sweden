@@ -6,7 +6,7 @@ from routers.users import router as users_router
 # Create an instance of the FastAPI class
 app = FastAPI()
 
-# Include routers
+# Include all routers here
 app.include_router(users_router)
 
 router = APIRouter()
@@ -14,7 +14,6 @@ router = APIRouter()
 # Root endpoint
 @router.get("/")
 def root():
-    # Connect to the database
     db_connection = connect_to_db()
     
     if db_connection is not None:
@@ -32,17 +31,18 @@ def root():
             """)
             
             # Insert sample row
-            cursor.execute("INSERT INTO USERS (Name, Email) VALUES (%s, %s) RETURNING *", ("Bagarsmurfen", "bagare@smurfarna.se"))
-            db_connection.commit()  # Commit the transaction
+            cursor.execute(
+                "INSERT INTO USERS (Name, Email) VALUES (%s, %s) RETURNING *", 
+                ("Farfarsmurfen", "farfar@smurfarna.se")
+                )
+            db_connection.commit()  
             
-            # Fetch the inserted data
+            # Fetch the inserted data and return for demo purposes
             inserted_data = cursor.fetchone()
-            
-            return {"message": "Data inserted and fetched successfully", "inserted_data": inserted_data}
+            return {"message": "Data inserted and fetched successfully", 
+                    "inserted_data": inserted_data}
         
         except Exception as e:
-            # Log the exception
-            logger.error("Error inserting data: %s", e)
             return {"message": "An error occurred while creating table or inserting data"}
         
         finally:

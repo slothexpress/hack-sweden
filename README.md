@@ -1,25 +1,25 @@
 # Hack Sweden - Team Beachfaces
 WIP: About the app or purpose etc
 
-
 ## How to run
 Clone this repository to your local machine.
-
 
 ### Requirements
 - Python version 3 or higher
 - Node.js version 18 or higher
 - npm version 7 or higher
 
-### Database
-WIP: PostgreSQL
+### Database: PostgreSQL
+WIP 
+- Postgres version 16
+- pgAdmin 4
 
 ### Backend: Python
-Create a virtual environment with the following command:
+Navigate to the backend folder and create a virtual environment with the following command:
 
 `python -m venv venv`
 
-To install all Python dependencies, navigate to the backend folder and run command:
+To install all Python dependencies, run command:
 
 `pip install -r requirements.txt`
 
