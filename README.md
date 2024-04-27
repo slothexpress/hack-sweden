@@ -14,8 +14,10 @@ Clone this repository to your local machine.
 ### Database
 WIP: PostgreSQL
 
-### Backend
-Python
+### Backend: Python
+Create a virtual environment with the following command:
+
+`python -m venv venv`
 
 To install all Python dependencies, navigate to the backend folder and run command:
 
