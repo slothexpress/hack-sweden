@@ -59,7 +59,7 @@ def root():
             # Fetch the inserted data
             inserted_data = cursor.fetchone()
             
-            return {"message": "Table created, data inserted and fetched successfully", "inserted_data": inserted_data}
+            return {"message": "Data inserted and fetched successfully", "inserted_data": inserted_data}
         
         except Exception as e:
             # Log the exception
@@ -73,40 +73,6 @@ def root():
     
     else:
         return {"message": "Failed to connect to the database"}
-
-    
-    # Connect to the database
-    db_connection = connect_to_db()
-    
-        
-    if db_connection is not None:
-        # Create a cursor object
-        cursor = db_connection.cursor()
-        
-        try:
-            # Execute SQL query to insert data into a table
-            cursor.execute("INSERT INTO your_table_name (column1, column2) VALUES (%s, %s) RETURNING *", ("value1", "value2"))
-            db_connection.commit()  # Commit the transaction
-            
-            # Fetch the inserted data
-            inserted_data = cursor.fetchone()
-            
-            return {"message": "Data inserted and fetched successfully", "inserted_data": inserted_data}
-        
-        except Exception as e:
-            # Log any errors that occur during the insertion process
-            print("Error inserting data:", e)
-            return {"message": "An error occurred while inserting data"}
-        
-        finally:
-            # Close the cursor and database connection
-            cursor.close()
-            db_connection.close()
-    
-    else:
-        return {"message": "Failed to connect to the database"}
-    
-    return "OK SAMI"
 
 # Run the FastAPI application using Uvicorn
 #if __name__ == "__main__":
