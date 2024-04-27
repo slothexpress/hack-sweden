@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import Map from "./Map";
 
 const API_URL = "http://localhost";
 const API_PORT = "8000";
@@ -25,6 +26,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
+          <Map></Map>
           <h1>Data from Backend API:</h1>
           <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
