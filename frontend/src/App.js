@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Map from "./Map";
+import FilterForm from "./FilterForm";
 
 const API_URL = "http://localhost";
 const API_PORT = "8000";
@@ -25,10 +26,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div>
-          <Map></Map>
-          <h1>Data from Backend API:</h1>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
+        <div
+          style={{
+            display: "flex",
+            gap: "50px",
+          }}
+        >
+          <FilterForm />
+          <Map />
         </div>
       </header>
     </div>
