@@ -4,13 +4,14 @@ from dotenv import load_dotenv
 import requests
 import zipfile
 import xml.etree.ElementTree as ET
-import pandas 
 import json
 import uuid
 
 router = APIRouter()
 
 url = "https://opendata.samtrafiken.se/stopsregister-netex-sweden/sweden.zip?key="
+xml_file = "resources/_stops.xml"
+json_file= "resources/filtered_stops.json"
 
 def load_env_variables():
     dotenv_path = '../.env'
@@ -34,31 +35,6 @@ def test_fetch_api():
         # If the request was not successful, print the error status code
         print("Error:", response.status_code)
         return "Can not fetch API from: " + url
-
-@router.get("/stops")
-async def get_stops(id: int):
-    data = test_fetch_api()
-    
-    return data
-
-@router.get("/stops/{id}")
-async def get_stop(id: int):
-    return {"message": f"STOP:  {id}"}
-
-def xml_to_dataframe(xml_file):
-    tree = ET.parse(xml_file)
-    root = tree.getroot()
-
-    data = []
-    for child in root:
-        row = {}
-        for subchild in child:
-            row[subchild.tag] = subchild.text
-        data.append(row)
-
-    return pandas.DataFrame(data)
-
-### TEST
 
 def extract_stop_places(root, namespace):
     latitude_boundary = 56.5512883
@@ -91,23 +67,37 @@ def save_to_json(data, output_file):
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
-xml_file = "_stops.xml"
+def xml_to_json():
+    # Parse the XML file
+    tree = ET.parse(xml_file)
+    root = tree.getroot()
 
-# Parse the XML file
-tree = ET.parse(xml_file)
-root = tree.getroot()
+    # Define the namespace used in the XML file
+    namespace = {'netex': 'http://www.netex.org.uk/netex'}
 
-# Define the namespace used in the XML file
-namespace = {'netex': 'http://www.netex.org.uk/netex'}
+    # Extract and filter StopPlace data
+    stop_places_data, num_saved = extract_stop_places(root, namespace)
+    
+    # Save the filtered data to a JSON file
+    save_to_json(stop_places_data, json_file)
 
-# Extract and filter StopPlace data
-stop_places_data, num_saved = extract_stop_places(root, namespace)
+    # Print the number of elements saved
+    print("Number of elements saved:", num_saved)
+    return stop_places_data
 
-# Specify the output file path
-output_file = "filtered_stops.json"
 
-# Save the filtered data to a JSON file
-save_to_json(stop_places_data, output_file)
+@router.get("/stops")
+async def get_stops():
+    # data = test_fetch_api()
+    
+    # Read the JSON file
+    with open(json_file, "r") as file:
+        data = json.load(file)
 
-# Print the number of elements saved
-print("Number of elements saved:", num_saved)
+    return data
+
+@router.get("/json")
+async def xml_json():
+    stops = xml_to_json()
+    return "XML TO JSON OK"
+
