@@ -1,18 +1,5 @@
-from fastapi import APIRouter, HTTPException
-from fastapi import FastAPI
+from fastapi import APIRouter
 from database import connect_to_db
-# from routers.users import router as users_router
-from routers.skaneled import router as skaneled_router
-# from routers import users, skaneled
-
-# Create an instance of the FastAPI class
-app = FastAPI()
-
-# Include all routers here
-# app.include_router(users_router)
-# app.include_router(skaneled_router)
-# app.include_router(users.router)
-# app.include_router(skaneled.router)
 
 router = APIRouter()
 
