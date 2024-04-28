@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function FilterForm() {
   const [filter, setFilter] = useState({
     trailLength: 0,
+    trailTranspDist: 0,
     transport: { bus: false, train: false, other: false, all: false },
   });
 
@@ -18,6 +19,14 @@ export default function FilterForm() {
         <input
           type="number"
           onBlur={(e) => setFilter({ ...filter, trailLength: e.target.value })}
+        />
+      </label>
+      <br />
+      <label>
+        Trail distance from public transport stop:
+        <input
+          type="number"
+          onBlur={(e) => setFilter({ ...filter, trailTranspDist: e.target.value })}
         />
       </label>
       <br />

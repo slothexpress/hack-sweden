@@ -11,7 +11,7 @@ import "leaflet/dist/leaflet.css";
 import { trails } from "./exampleData";
 import { stations } from "./stationsTestData";
 
-const Map = () => {
+export default function Map() {
   const mapRef = useRef(null);
   const latitude = 55.6918412;
   const longitude = 13.3603703;
@@ -31,7 +31,7 @@ const Map = () => {
             radius={5}
             pathOptions={{ color: "red" }}
           >
-            <Popup>{station.name}</Popup>
+            <Popup>{station?.name}</Popup>
           </CircleMarker>
         ))}
       </LayerGroup>
@@ -46,9 +46,6 @@ const Map = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {/* Additional map layers or components can be added here */}
     </MapContainer>
   );
 };
-
-export default Map;
