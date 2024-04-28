@@ -1,5 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from fastapi import FastAPI
 from database import connect_to_db
+
+# Create an instance of the FastAPI class
+app = FastAPI()
 
 router = APIRouter()
 

@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import users, skaneled, root
+from routers import users, skaneled, root, stops
 
 # Create an instance of the FastAPI class
 app = FastAPI()
 
 app.include_router(root.router)
 app.include_router(users.router)
+app.include_router(stops.router)
 app.include_router(skaneled.router)
 
 # TODO: Define allowed origins
