@@ -459,7 +459,7 @@ const features = [
   },
 ];
 
-const reverseCoordinates = (features) =>
+export const reverseCoordinates = (features) =>
   features.map((feature) => {
     const { geometry, properties } = feature;
     const coordinates = geometry?.coordinates.map((coordinate) => [
@@ -469,4 +469,4 @@ const reverseCoordinates = (features) =>
     return { name: properties?.name, coordinates };
   });
 
-export const trails = reverseCoordinates(features);
+// export const trails = reverseCoordinates(features);

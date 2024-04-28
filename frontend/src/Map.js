@@ -8,10 +8,11 @@ import {
   Popup,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { trails } from "./exampleData";
+// import { trails } from "./exampleData";
 import { stations } from "./stationsTestData";
 
-export default function Map() {
+export default function Map(data) {
+  console.log("🚀  🚀  🚀   ~ Map ~ data:", data);
   const mapRef = useRef(null);
   const latitude = 55.6918412;
   const longitude = 13.3603703;
@@ -36,11 +37,11 @@ export default function Map() {
         ))}
       </LayerGroup>
       <LayerGroup>
-        {trails.map((trail) => (
+        {/* {data.map((trail) => (
           <Polyline positions={trail?.coordinates}>
             <Popup>{trail?.name}</Popup>
           </Polyline>
-        ))}
+        ))} */}
       </LayerGroup>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -48,4 +49,4 @@ export default function Map() {
       />
     </MapContainer>
   );
-};
+}
