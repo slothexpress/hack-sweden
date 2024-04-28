@@ -10,7 +10,7 @@ async def get_skaneled():
     jsonContent = webFile.decode('utf-8')
 
     gdf = gpd.read_file(jsonContent, driver='GeoJSON')
-    smaller = gdf[gdf["bus"] != "Yes"]
+    smaller = gdf[gdf["bus"] != "yes"]
     smaller = smaller.get(['name', 'from', 'to', 'geometry', 'website'])
 
     return Response(smaller.to_json())
